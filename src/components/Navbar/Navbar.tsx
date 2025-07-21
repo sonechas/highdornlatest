@@ -49,10 +49,34 @@ const Navbar = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      document.documentElement.classList.add('is-navigating');
-      setTimeout(() => {
-        window.location.href = href.startsWith('#') ? `/${href}` : href;
-      }, 300);
+      // Check if it's mobile (screen width <= 1279px to match our xl breakpoint)
+      const isMobile = window.innerWidth <= 1279;
+      
+      if (isMobile) {
+        // Luxury mobile transition
+        document.documentElement.classList.add('mobile-page-transition');
+        
+        // Create overlay for smooth transition
+        const overlay = document.createElement('div');
+        overlay.className = 'mobile-transition-overlay';
+        document.body.appendChild(overlay);
+        
+        // Trigger overlay animation
+        requestAnimationFrame(() => {
+          overlay.classList.add('active');
+        });
+        
+        // Navigate after overlay covers screen
+        setTimeout(() => {
+          window.location.href = href.startsWith('#') ? `/${href}` : href;
+        }, 400);
+      } else {
+        // Desktop transition (keep existing)
+        document.documentElement.classList.add('is-navigating');
+        setTimeout(() => {
+          window.location.href = href.startsWith('#') ? `/${href}` : href;
+        }, 300);
+      }
     }
 
     if (closeMobileMenu) {
