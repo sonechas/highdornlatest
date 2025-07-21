@@ -120,9 +120,11 @@ const Navbar = () => {
                     <div
                       className="absolute top-full left-1/2 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 opacity-0 scale-95 animate-dropdown-in"
                       onMouseEnter={handleDropdownMouseEnter}
-                      style={{ width: item.dropdown.length === 2 ? '600px' : '900px' }}
+                      style={{ 
                         width: item.dropdown.length === 2 ? '600px' : '900px',
                         transform: 'translateX(-50%)'
+                      }}
+                    >
                       <div className="absolute -top-2 left-1/2 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 transition-colors duration-200" style={{ transform: 'translateX(-50%)' }}></div>
                       <div className={`grid ${item.dropdown.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-4`}>
                         {item.dropdown.map((dropdownItem) => (
