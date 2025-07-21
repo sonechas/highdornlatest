@@ -82,31 +82,64 @@ html {
   transition: none !important;
 }
 
-/* Quick Mobile Phone Page Transitions (< 1100px) */
-@media (max-width: 1099px) {
-  /* Page entrance animation for mobile phones */
-  body:not(.preload) {
-    animation: mobile-phone-enter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+/* Enhanced navbar animations */
+@keyframes slide-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-  
-  @keyframes mobile-phone-enter {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  /* Dark mode transition overlay */
-  .dark body:not(.preload) {
-    background-color: #111827;
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.slide-in-from-left {
+  animation-name: slide-in-from-left;
+}
+
+/* Smooth hover effects */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:scale-110:hover {
+  transform: scale(1.1);
+}
+
+.hover\:-translate-y-1:hover {
+  transform: translateY(-0.25rem);
+}
+
+.hover\:translate-x-1:hover {
+  transform: translateX(0.25rem);
+}
+
+/* Enhanced dropdown animations */
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.zoom-in-95 {
+  animation: zoomIn95 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn95 {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
   }
-  
-  /* Smooth background transition for theme changes */
-  body {
-    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  to { 
+    opacity: 1;
+    transform: scale(1);
   }
 }

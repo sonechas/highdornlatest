@@ -25,11 +25,6 @@ function App() {
       document.body.classList.remove('preload');
     }, 100);
     
-    // Reset any transition styles on page load
-    document.body.style.opacity = '';
-    document.body.style.transform = '';
-    document.body.style.transition = '';
-    
     return () => clearTimeout(timer);
   }, []);
 
