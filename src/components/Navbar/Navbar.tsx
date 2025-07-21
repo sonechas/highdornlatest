@@ -104,7 +104,7 @@ const Navbar = () => {
           </div>
 
           {/* --- CENTER COLUMN: DESKTOP NAVIGATION --- */}
-          <div className="hidden md:flex items-center justify-center flex-1">
+          <div className="hidden xl:flex items-center justify-center flex-1">
             <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <div key={item.name} className="relative dropdown-container" onMouseLeave={() => item.dropdown && handleMouseLeave()}>
@@ -154,12 +154,27 @@ const Navbar = () => {
           {/* --- RIGHT COLUMN: (EMPTY ON DESKTOP) & MOBILE CONTROLS --- */}
           <div className="flex items-center justify-end">
             {/* Mobile controls remain here */}
-            <div className="md:hidden flex items-center gap-2">
+            <div className="xl:hidden flex items-center gap-2">
               <button onClick={toggleTheme} className="p-2 rounded-md text-gray-700 dark:text-gray-300">
                   {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
               </button>
-              <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-md text-gray-700 dark:text-gray-300">
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <button 
+                onClick={() => setIsOpen(!isOpen)} 
+                className="p-2 rounded-md text-gray-700 dark:text-gray-300 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 relative overflow-hidden"
+                aria-label="Toggle menu"
+              >
+                <div className="relative w-6 h-6">
+                  {/* Hamburger lines */}
+                  <span className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
+                    isOpen ? 'rotate-45 translate-y-2' : 'rotate-0 translate-y-0'
+                  }`}></span>
+                  <span className={`absolute left-0 top-2.5 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
+                    isOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+                  }`}></span>
+                  <span className={`absolute left-0 top-4 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
+                    isOpen ? '-rotate-45 -translate-y-2' : 'rotate-0 translate-y-0'
+                  }`}></span>
+                </div>
               </button>
             </div>
           </div>
@@ -169,23 +184,34 @@ const Navbar = () => {
 
       {/* Mobile Menu (No changes needed here) */}
       {isOpen && (
-        <div ref={mobileMenuRef} className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg max-h-[calc(100vh-4rem)] overflow-y-auto animate-in slide-in-from-top-2 duration-300">
+        <div 
+          ref={mobileMenuRef} 
+          className={`xl:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-300 ease-in-out ${
+            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+          }`}
+        >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <div key={item.name}>
                 <button
                   onClick={() => item.dropdown ? toggleDropdown(item.name) : handleNavigation(item.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 flex items-center gap-2 w-full text-left"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 flex items-center gap-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95"
                 >
                   <item.icon className="w-5 h-5" />
                   {item.name}
-                  {item.dropdown && <ChevronDown className={`w-5 h-5 transition-transform duration-200 ml-auto ${activeDropdown === item.name ? 'rotate-180' : ''}`} />}
+                  {item.dropdown && <ChevronDown className={`w-5 h-5 transition-transform duration-300 ease-in-out ml-auto ${activeDropdown === item.name ? 'rotate-180' : ''}`} />}
                 </button>
 
                 {item.dropdown && activeDropdown === item.name && (
-                  <div className="ml-6 mt-2 space-y-2 animate-in slide-in-from-top-2 duration-300">
+                  <div className={`ml-6 mt-2 space-y-2 transition-all duration-300 ease-in-out ${
+                    activeDropdown === item.name ? 'opacity-100 translate-y-0 max-h-96' : 'opacity-0 -translate-y-2 max-h-0 overflow-hidden'
+                  }`}>
                     {item.dropdown.map((dropdownItem) => (
-                      <button key={dropdownItem.name} onClick={() => handleNavigation(dropdownItem.href)} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 w-full text-left active:bg-gray-200 dark:active:bg-gray-700 hover:scale-[1.02] active:scale-[0.98] transform">
+                      <button 
+                        key={dropdownItem.name} 
+                        onClick={() => handleNavigation(dropdownItem.href)} 
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 w-full text-left active:bg-gray-200 dark:active:bg-gray-700 hover:scale-[1.02] active:scale-[0.98] transform hover:shadow-md"
+                      >
                         <div className="w-16 h-12 flex-shrink-0 overflow-hidden rounded"><img src={dropdownItem.image} alt={dropdownItem.name} className="w-full h-full object-cover"/></div>
                         <div className="text-left flex-grow">
                           <h4 className="text-sm font-medium text-gray-900 dark:text-white">{dropdownItem.name}</h4>
