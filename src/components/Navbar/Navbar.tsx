@@ -117,7 +117,7 @@ const Navbar = () => {
                   </button>
 
                   {item.dropdown && activeDropdown === item.name && (
-                    className="p-2 rounded-md text-gray-700 dark:text-gray-300 transition-all duration-300 ease-out hover:bg-gray-100 dark:hover:bg-gray-800 relative overflow-hidden hover:scale-110 active:scale-95"
+                    <div
                       className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 animate-in fade-in zoom-in-95 duration-200"
                       onMouseEnter={handleDropdownMouseEnter}
                       style={{ width: item.dropdown.length === 2 ? '600px' : '900px' }}
@@ -146,13 +146,13 @@ const Navbar = () => {
                                   const img = e.target as HTMLImageElement;
                                   img.style.display = 'none';
                                 }}
-                      <span className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-400 ease-out ${
+                              />
                             </div>
                             <div className="p-4">
-                      <span className={`absolute left-0 top-2.5 w-6 h-0.5 bg-current transition-all duration-400 ease-out ${
+                              <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 ease-out">{dropdownItem.name}</h3>
                               <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300 ease-out">{dropdownItem.description}</p>
                             </div>
-                      <span className={`absolute left-0 top-4 w-6 h-0.5 bg-current transition-all duration-400 ease-out ${
+                          </button>
                         ))}
                       </div>
                     </div>
