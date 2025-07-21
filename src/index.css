@@ -82,111 +82,21 @@ html {
   transition: none !important;
 }
 
-/* Luxury Mobile Page Transitions */
-@media (max-width: 1279px) {
-  .mobile-page-transition {
-    overflow: hidden;
-  }
-  
-  .mobile-page-transition * {
-    pointer-events: none;
-  }
-  
-  .mobile-transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    z-index: 9999;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(20px);
-  }
-  
-  .mobile-transition-overlay::before {
-    content: '';
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid white;
-    border-radius: 50%;
-    animation: luxury-spin 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
-  }
-  
-  .mobile-transition-overlay.active {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  @keyframes luxury-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Page entrance animation */
-  .mobile-page-enter {
-    animation: mobile-page-slide-in 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
-  }
-  
-  @keyframes mobile-page-slide-in {
-    0% {
-      opacity: 0;
-      transform: translateY(20px) scale(0.98);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-  
-  /* Enhanced mobile menu transitions */
-  .xl\\:hidden .space-y-1 > div {
-    transform: translateX(-10px);
-    opacity: 0;
-    animation: mobile-menu-item-slide 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
-  }
-  
-  .xl\\:hidden .space-y-1 > div:nth-child(1) { animation-delay: 0.05s; }
-  .xl\\:hidden .space-y-1 > div:nth-child(2) { animation-delay: 0.1s; }
-  .xl\\:hidden .space-y-1 > div:nth-child(3) { animation-delay: 0.15s; }
-  .xl\\:hidden .space-y-1 > div:nth-child(4) { animation-delay: 0.2s; }
-  .xl\\:hidden .space-y-1 > div:nth-child(5) { animation-delay: 0.25s; }
-  
-  @keyframes mobile-menu-item-slide {
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  /* Mobile dropdown animations */
-  .mobile-dropdown-enter {
-    animation: mobile-dropdown-slide 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
-  }
-  
-  @keyframes mobile-dropdown-slide {
-    0% {
-      opacity: 0;
-      transform: translateY(-10px) scale(0.95);
-      max-height: 0;
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      max-height: 400px;
-    }
-  }
-}
-
-/* Page load animation for mobile */
-@media (max-width: 1279px) {
+/* Quick Mobile Phone Page Transitions (< 1100px) */
+@media (max-width: 1099px) {
+  /* Page entrance animation for mobile phones */
   body:not(.preload) {
-    animation: mobile-page-slide-in 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+    animation: mobile-phone-enter 0.2s ease-out forwards;
+  }
+  
+  @keyframes mobile-phone-enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

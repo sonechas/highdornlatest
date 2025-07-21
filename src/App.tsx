@@ -23,21 +23,12 @@ function App() {
     // Remove preload class after initial render to enable transitions
     const timer = setTimeout(() => {
       document.body.classList.remove('preload');
-      
-      // Add mobile page entrance animation
-      if (window.innerWidth <= 1279) {
-        document.body.classList.add('mobile-page-enter');
-      }
     }, 100);
     
-    // Clean up transition overlay on page load (in case of refresh during transition)
-    const existingOverlay = document.querySelector('.mobile-transition-overlay');
-    if (existingOverlay) {
-      existingOverlay.remove();
-    }
-    
-    // Remove navigation classes
-    document.documentElement.classList.remove('mobile-page-transition', 'is-navigating');
+    // Reset any transition styles on page load
+    document.body.style.opacity = '';
+    document.body.style.transform = '';
+    document.body.style.transition = '';
     
     return () => clearTimeout(timer);
   }, []);
