@@ -97,14 +97,14 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           
           {/* --- LEFT COLUMN: LOGO --- */}
-          <div className="flex-1 flex justify-start">
+          <div className="flex-shrink-0">
             <button onClick={handleLogoClick} className="transition-transform duration-300 hover:scale-105 active:scale-100">
               <img src="/Freshwater.png" alt="Highdorn Co. Limited" className="h-10 w-auto" />
             </button>
           </div>
 
           {/* --- CENTER COLUMN: DESKTOP NAVIGATION --- */}
-          <div className="hidden md:flex items-center justify-center">
+          <div className="hidden md:flex items-center justify-center flex-1">
             <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <div key={item.name} className="relative dropdown-container" onMouseLeave={() => item.dropdown && handleMouseLeave()}>
@@ -152,7 +152,7 @@ const Navbar = () => {
           </div>
 
           {/* --- RIGHT COLUMN: (EMPTY ON DESKTOP) & MOBILE CONTROLS --- */}
-          <div className="flex-1 flex items-center justify-end">
+          <div className="flex items-center justify-end">
             {/* Mobile controls remain here */}
             <div className="md:hidden flex items-center gap-2">
               <button onClick={toggleTheme} className="p-2 rounded-md text-gray-700 dark:text-gray-300">
