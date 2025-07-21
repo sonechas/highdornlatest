@@ -128,7 +128,28 @@ const Navbar = () => {
                       <div className={`grid ${item.dropdown.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-4`}>
                         {item.dropdown.map((dropdownItem) => (
                           <button key={dropdownItem.name} onClick={() => handleNavigation(dropdownItem.href)} className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 text-left">
-                            <div className="aspect-video overflow-hidden"><img src={dropdownItem.image} alt={dropdownItem.name} className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500" /></div>
+                            <div className="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-700">
+                              <img 
+                                src={dropdownItem.image} 
+                                alt={dropdownItem.name} 
+                                className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500" 
+                                loading="lazy"
+                                decoding="async"
+                                style={{ 
+                                  imageRendering: 'auto',
+                                  filter: 'blur(0px)',
+                                  transition: 'filter 0.3s ease'
+                                }}
+                                onLoad={(e) => {
+                                  const img = e.target as HTMLImageElement;
+                                  img.style.filter = 'blur(0px)';
+                                }}
+                                onError={(e) => {
+                                  const img = e.target as HTMLImageElement;
+                                  img.style.display = 'none';
+                                }}
+                              />
+                            </div>
                             <div className="p-4">
                               <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">{dropdownItem.name}</h3>
                               <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{dropdownItem.description}</p>
@@ -212,7 +233,19 @@ const Navbar = () => {
                         onClick={() => handleNavigation(dropdownItem.href)} 
                         className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 w-full text-left active:bg-gray-200 dark:active:bg-gray-700 hover:scale-[1.02] active:scale-[0.98] transform hover:shadow-md"
                       >
-                        <div className="w-16 h-12 flex-shrink-0 overflow-hidden rounded"><img src={dropdownItem.image} alt={dropdownItem.name} className="w-full h-full object-cover"/></div>
+                        <div className="w-16 h-12 flex-shrink-0 overflow-hidden rounded bg-gray-100 dark:bg-gray-700">
+                          <img 
+                            src={dropdownItem.image} 
+                            alt={dropdownItem.name} 
+                            className="w-full h-full object-cover" 
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                              const img = e.target as HTMLImageElement;
+                              img.style.display = 'none';
+                            }}
+                          />
+                        </div>
                         <div className="text-left flex-grow">
                           <h4 className="text-sm font-medium text-gray-900 dark:text-white">{dropdownItem.name}</h4>
                           <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">{dropdownItem.description}</p>
