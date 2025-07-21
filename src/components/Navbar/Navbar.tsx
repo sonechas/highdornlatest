@@ -26,7 +26,7 @@ const Navbar = () => {
         { name: 'Residential', href: '/residential', description: 'Luxury homes and residential developments', image: '/residential.jpg' }
     ]},
     { name: 'People', href: '#people', icon: Users2, dropdown: [
-        { name: 'Directors', href: '/directors', description: 'Board of directors and leadership team', image: '/director.jpg' },
+        { name: 'Directors', href: '/directors', description: 'Board of directors and leadership team', image: '/executive.jpg' },
         { name: 'Executive Team', href: '/executive', description: 'Senior management and executives', image: '/executive.jpg' },
         { name: 'Management Team', href: '/management', description: 'Department heads and managers', image: '/management.jpg' }
     ]},
