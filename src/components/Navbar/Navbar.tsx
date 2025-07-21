@@ -125,7 +125,6 @@ const Navbar = () => {
                         transform: 'translateX(-50%)'
                       }}
                     >
-                      <div className="absolute -top-2 left-1/2 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 transition-colors duration-200" style={{ transform: 'translateX(-50%)' }}></div>
                       <div className={`grid ${item.dropdown.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-4`}>
                         {item.dropdown.map((dropdownItem) => (
                           <button key={dropdownItem.name} onClick={() => handleNavigation(dropdownItem.href)} className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-out border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 text-left transform hover:scale-105 hover:-translate-y-1">
