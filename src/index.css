@@ -86,17 +86,27 @@ html {
 @media (max-width: 1099px) {
   /* Page entrance animation for mobile phones */
   body:not(.preload) {
-    animation: mobile-phone-enter 0.2s ease-out forwards;
+    animation: mobile-phone-enter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
   
   @keyframes mobile-phone-enter {
     0% {
       opacity: 0;
-      transform: translateY(10px);
+      transform: scale(0.95);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
     }
+  }
+  
+  /* Dark mode transition overlay */
+  .dark body:not(.preload) {
+    background-color: #111827;
+  }
+  
+  /* Smooth background transition for theme changes */
+  body {
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
   }
 }

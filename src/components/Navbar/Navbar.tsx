@@ -53,15 +53,15 @@ const Navbar = () => {
       const isMobilePhone = window.innerWidth < 1100;
       
       if (isMobilePhone) {
-        // Quick mobile phone transition
+        // Mobile phone transition with zoom effect
         document.body.style.opacity = '0';
-        document.body.style.transform = 'translateY(10px)';
-        document.body.style.transition = 'opacity 0.15s ease-out, transform 0.15s ease-out';
+        document.body.style.transform = 'scale(0.95)';
+        document.body.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
         
-        // Navigate quickly
+        // Navigate with delay to show transition
         setTimeout(() => {
           window.location.href = href.startsWith('#') ? `/${href}` : href;
-        }, 150);
+        }, 300);
       } else {
         // Desktop - instant navigation
         window.location.href = href.startsWith('#') ? `/${href}` : href;
