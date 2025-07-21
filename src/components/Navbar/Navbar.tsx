@@ -132,7 +132,9 @@ const Navbar = () => {
                               <img 
                                 src={dropdownItem.image} 
                                 alt={dropdownItem.name} 
-                                className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-300 ease-out" 
+                                className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-out ${
+                                  dropdownItem.name.includes('2024') ? 'object-center' : 'object-top'
+                                }`}
                                 loading="lazy"
                                 decoding="async"
                                 style={{ 
