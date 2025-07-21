@@ -118,19 +118,20 @@ const Navbar = () => {
 
                   {item.dropdown && activeDropdown === item.name && (
                     <div
-                      className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 animate-in fade-in zoom-in-95 duration-200"
+                      className="absolute top-full left-1/2 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 opacity-0 scale-95 animate-dropdown-in"
                       onMouseEnter={handleDropdownMouseEnter}
                       style={{ width: item.dropdown.length === 2 ? '600px' : '900px' }}
-                    >
-                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 transition-colors duration-200"></div>
+                        width: item.dropdown.length === 2 ? '600px' : '900px',
+                        transform: 'translateX(-50%)'
+                      <div className="absolute -top-2 left-1/2 w-4 h-4 bg-white dark:bg-gray-800 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 transition-colors duration-200" style={{ transform: 'translateX(-50%)' }}></div>
                       <div className={`grid ${item.dropdown.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-4`}>
                         {item.dropdown.map((dropdownItem) => (
-                          <button key={dropdownItem.name} onClick={() => handleNavigation(dropdownItem.href)} className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-500 ease-out border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 text-left transform hover:scale-105 hover:-translate-y-1">
+                          <button key={dropdownItem.name} onClick={() => handleNavigation(dropdownItem.href)} className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-out border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 text-left transform hover:scale-105 hover:-translate-y-1">
                             <div className="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-700">
                               <img 
                                 src={dropdownItem.image} 
                                 alt={dropdownItem.name} 
-                                className="w-full h-full object-cover object-center group-hover:scale-125 transition-transform duration-700 ease-out" 
+                                className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-300 ease-out" 
                                 loading="lazy"
                                 decoding="async"
                                 style={{ 
@@ -149,8 +150,8 @@ const Navbar = () => {
                               />
                             </div>
                             <div className="p-4">
-                              <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 ease-out">{dropdownItem.name}</h3>
-                              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300 ease-out">{dropdownItem.description}</p>
+                              <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 ease-out">{dropdownItem.name}</h3>
+                              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-200 ease-out">{dropdownItem.description}</p>
                             </div>
                           </button>
                         ))}
