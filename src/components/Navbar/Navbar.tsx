@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -100,12 +101,19 @@ const Navbar = () => {
   useEffect(() => () => { if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current) }, []);
   useEffect(() => { document.documentElement.classList.remove('is-navigating') }, []);
 
+  // Determine if navbar should be colored (scrolled or hovered)
+  const isNavbarColored = isScrolled || isHovered;
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-      isScrolled 
-        ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg' 
-        : 'bg-white/20 dark:bg-gray-900/20 backdrop-blur-sm'
-    }`}>
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        isNavbarColored 
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg' 
+          : 'bg-white/20 dark:bg-gray-900/20 backdrop-blur-sm'
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
@@ -116,7 +124,7 @@ const Navbar = () => {
                 src="/Freshwater.png" 
                 alt="Highdorn Co. Limited" 
                 className={`h-10 w-auto transition-all duration-500 ${
-                  isScrolled ? 'opacity-100' : 'opacity-90 brightness-110'
+                  isNavbarColored ? 'opacity-100' : 'opacity-90 brightness-110'
                 }`} 
               />
             </button>
@@ -131,7 +139,7 @@ const Navbar = () => {
                     onClick={() => item.dropdown ? toggleDropdown(item.name) : handleNavigation(item.href)}
                     onMouseEnter={() => item.dropdown && handleMouseEnter(item.name)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 group ${
-                      isScrolled 
+                      isNavbarColored 
                         ? 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800' 
                         : 'text-white hover:text-blue-200 hover:bg-white/10'
                     }`}
@@ -190,7 +198,7 @@ const Navbar = () => {
               <button
                 onClick={toggleTheme}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                  isScrolled 
+                  isNavbarColored 
                     ? 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800' 
                     : 'text-white hover:text-blue-200 hover:bg-white/10'
                 }`}
@@ -208,7 +216,7 @@ const Navbar = () => {
               <button 
                 onClick={toggleTheme} 
                 className={`p-2 rounded-md transition-colors duration-300 ${
-                  isScrolled 
+                  isNavbarColored 
                     ? 'text-gray-700 dark:text-gray-300' 
                     : 'text-white'
                 }`}
@@ -218,7 +226,7 @@ const Navbar = () => {
               <button 
                 onClick={() => setIsOpen(!isOpen)} 
                 className={`p-2 rounded-md transition-all duration-300 relative overflow-hidden ${
-                  isScrolled 
+                  isNavbarColored 
                     ? 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' 
                     : 'text-white hover:bg-white/10'
                 }`}
@@ -250,7 +258,7 @@ const Navbar = () => {
           className={`xl:hidden backdrop-blur-lg max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-400 ease-out ${
             isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
           } ${
-            isScrolled 
+            isNavbarColored 
               ? 'bg-white/95 dark:bg-gray-900/95' 
               : 'bg-white/90 dark:bg-gray-900/90'
           }`}
@@ -261,7 +269,7 @@ const Navbar = () => {
                 <button
                   onClick={() => item.dropdown ? toggleDropdown(item.name) : handleNavigation(item.href)}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ease-out flex items-center gap-2 w-full text-left active:scale-95 hover:translate-x-1 ${
-                    isScrolled 
+                    isNavbarColored 
                       ? 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800' 
                       : 'text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50'
                   }`}
