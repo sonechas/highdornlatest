@@ -194,34 +194,36 @@ const Navbar = () => {
                         </div>
 
                         {/* Right Content Area */}
-                        <div className="flex-1 bg-gray-50 dark:bg-gray-800 p-6">
+                        <div className="flex-1 bg-gray-50 dark:bg-gray-800 p-8">
                           <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
                             FEATURED IN {item.name.toUpperCase()}
                           </h4>
-                          <div className={`grid ${item.dropdown.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-4`}>
+                          <div className={`grid ${item.dropdown.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-6`}>
                             {item.dropdown.map((dropdownItem) => (
                               <button
                                 key={dropdownItem.name}
                                 onClick={() => handleNavigation(dropdownItem.href)}
-                                className="group bg-white dark:bg-gray-900 overflow-hidden hover:shadow-lg transition-all duration-300 text-left border border-gray-200 dark:border-gray-700"
+                                className="group bg-white dark:bg-gray-900 overflow-hidden hover:shadow-xl transition-all duration-300 text-left border border-gray-200 dark:border-gray-700 hover:scale-105"
                               >
-                                <div className="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-700">
+                                <div className="h-32 overflow-hidden bg-gray-100 dark:bg-gray-700">
                                   <img 
                                     src={dropdownItem.image} 
                                     alt={dropdownItem.name} 
-                                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300" 
-                                    loading="lazy"
+                                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-300"
                                     onError={(e) => {
                                       const img = e.target as HTMLImageElement;
                                       img.style.display = 'none';
                                     }}
                                   />
                                 </div>
-                                <div className="p-4">
-                                  <h5 className={`font-semibold ${getDropdownColors(item.color || 'gray').accent} group-hover:underline transition-colors duration-200 mb-1`}>
+                                <div className="p-6">
+                                  <h5 className={`font-semibold text-lg ${getDropdownColors(item.color || 'gray').accent} group-hover:underline transition-colors duration-200 mb-2`}>
                                     {dropdownItem.name}
                                   </h5>
-                                  <ChevronRight className={`w-4 h-4 ${getDropdownColors(item.color || 'gray').accent}`} />
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm text-gray-600 dark:text-gray-400">Learn more</span>
+                                    <ChevronRight className={`w-5 h-5 ${getDropdownColors(item.color || 'gray').accent}`} />
+                                  </div>
                                 </div>
                               </button>
                             ))}
@@ -299,12 +301,11 @@ const Navbar = () => {
                         className="flex items-start gap-3 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 ease-out w-full text-left active:bg-gray-200 dark:active:bg-gray-700 hover:scale-[1.02] active:scale-[0.98] transform hover:shadow-md hover:translate-x-1 animate-in slide-in-from-left border border-gray-200 dark:border-gray-700"
                         style={{ animationDelay: `${dropdownIndex * 75}ms` }}
                       >
-                        <div className="w-16 h-12 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-700">
+                        <div className="w-20 h-16 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-700">
                           <img 
                             src={dropdownItem.image} 
                             alt={dropdownItem.name} 
-                            className="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110" 
-                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110"
                             onError={(e) => {
                               const img = e.target as HTMLImageElement;
                               img.style.display = 'none';
@@ -312,8 +313,8 @@ const Navbar = () => {
                           />
                         </div>
                         <div className="text-left flex-grow">
-                          <h4 className="text-sm font-medium text-gray-900 dark:text-white">{dropdownItem.name}</h4>
-                          <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2 transition-colors duration-200">{dropdownItem.description}</p>
+                          <h4 className="text-base font-medium text-gray-900 dark:text-white mb-1">{dropdownItem.name}</h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 transition-colors duration-200">{dropdownItem.description}</p>
                         </div>
                       </button>
                     ))}
