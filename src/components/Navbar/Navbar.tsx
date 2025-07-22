@@ -5,9 +5,20 @@ import { useTheme } from '../../hooks/useTheme';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -90,14 +101,24 @@ const Navbar = () => {
   useEffect(() => { document.documentElement.classList.remove('is-navigating') }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-md transition-all duration-300">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+      isScrolled 
+        ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg' 
+        : 'bg-white/20 dark:bg-gray-900/20 backdrop-blur-sm'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* --- LEFT COLUMN: LOGO --- */}
           <div className="flex-shrink-0">
             <button onClick={handleLogoClick} className="transition-transform duration-300 hover:scale-105 active:scale-100">
-              <img src="/Freshwater.png" alt="Highdorn Co. Limited" className="h-10 w-auto" />
+              <img 
+                src="/Freshwater.png" 
+                alt="Highdorn Co. Limited" 
+                className={`h-10 w-auto transition-all duration-500 ${
+                  isScrolled ? 'opacity-100' : 'opacity-90 brightness-110'
+                }`} 
+              />
             </button>
           </div>
 
@@ -109,7 +130,11 @@ const Navbar = () => {
                   <button
                     onClick={() => item.dropdown ? toggleDropdown(item.name) : handleNavigation(item.href)}
                     onMouseEnter={() => item.dropdown && handleMouseEnter(item.name)}
-                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 group hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 group ${
+                      isScrolled 
+                        ? 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800' 
+                        : 'text-white hover:text-blue-200 hover:bg-white/10'
+                    }`}
                   >
                     <item.icon className="w-4 h-4" />
                     {item.name}
@@ -164,7 +189,11 @@ const Navbar = () => {
               {/* CHANGE: Moved theme toggle to be part of the central nav items */}
               <button
                 onClick={toggleTheme}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                  isScrolled 
+                    ? 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800' 
+                    : 'text-white hover:text-blue-200 hover:bg-white/10'
+                }`}
               >
                 {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                 {isDarkMode ? "Light Mode" : "Dark Mode"}
@@ -176,12 +205,23 @@ const Navbar = () => {
           <div className="flex items-center justify-end">
             {/* Mobile controls remain here */}
             <div className="xl:hidden flex items-center gap-2">
-              <button onClick={toggleTheme} className="p-2 rounded-md text-gray-700 dark:text-gray-300">
+              <button 
+                onClick={toggleTheme} 
+                className={`p-2 rounded-md transition-colors duration-300 ${
+                  isScrolled 
+                    ? 'text-gray-700 dark:text-gray-300' 
+                    : 'text-white'
+                }`}
+              >
                   {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
               </button>
               <button 
                 onClick={() => setIsOpen(!isOpen)} 
-                className="p-2 rounded-md text-gray-700 dark:text-gray-300 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 relative overflow-hidden"
+                className={`p-2 rounded-md transition-all duration-300 relative overflow-hidden ${
+                  isScrolled 
+                    ? 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' 
+                    : 'text-white hover:bg-white/10'
+                }`}
                 aria-label="Toggle menu"
               >
                 <div className="relative w-6 h-6">
@@ -207,8 +247,12 @@ const Navbar = () => {
       {isOpen && (
         <div 
           ref={mobileMenuRef} 
-          className={`xl:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-400 ease-out ${
+          className={`xl:hidden backdrop-blur-lg max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-400 ease-out ${
             isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+          } ${
+            isScrolled 
+              ? 'bg-white/95 dark:bg-gray-900/95' 
+              : 'bg-white/90 dark:bg-gray-900/90'
           }`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -216,7 +260,11 @@ const Navbar = () => {
               <div key={item.name} className="animate-in slide-in-from-left duration-300 ease-out" style={{ animationDelay: `${index * 50}ms` }}>
                 <button
                   onClick={() => item.dropdown ? toggleDropdown(item.name) : handleNavigation(item.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ease-out flex items-center gap-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 hover:translate-x-1"
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ease-out flex items-center gap-2 w-full text-left active:scale-95 hover:translate-x-1 ${
+                    isScrolled 
+                      ? 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800' 
+                      : 'text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50'
+                  }`}
                 >
                   <item.icon className="w-5 h-5" />
                   {item.name}
