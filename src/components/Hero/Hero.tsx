@@ -1,14 +1,12 @@
 import React from 'react';
-// Link and Search are no longer needed as the button is removed
-// import { Link } from 'react-router-dom';
-// import { Search } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -17,27 +15,39 @@ const Hero = () => {
           alt="Luxury Property"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl">
+      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="mb-8"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Discover Your Dream
-            <span className="block text-blue-400">Property</span>
+          <div className="text-white text-sm font-medium tracking-wider uppercase mb-4">
+            HIGHDORN CO. LIMITED
+          </div>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 leading-none tracking-tight">
+            PLACES
+            <br />
+            PEOPLE
+            <br />
+            <span className="text-teal-400">PREFER</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Experience luxury living with our exclusive real estate offerings
-            across the UK
-          </p>
         </motion.div>
 
-        {/* The "Explore Properties Button" section has been removed */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <button className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-none font-semibold hover:bg-gray-100 transition-colors duration-200">
+            About Highdorn
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </motion.div>
       </div>
     </section>
   );

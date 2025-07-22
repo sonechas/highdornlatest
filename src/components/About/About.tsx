@@ -1,35 +1,8 @@
 import React from 'react';
+import { ArrowRight, Building2, Users2, Award, TrendingUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// --- Icon Components (Self-contained SVGs for lucide-react) ---
-const Building2 = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-);
-const Users2 = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14 19a6 6 0 0 0-12 0"/><circle cx="8" cy="9" r="4"/><path d="M22 19a6 6 0 0 0-6-6 4 4 0 1 0 0-8"/></svg>
-);
-const Award = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-);
-const TrendingUp = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-);
-
-// --- Mock Hook and Framer Motion ---
-const useScrollAnimation = () => {
-  // This is a mock hook. In a real app, it would contain logic for scroll animations.
-  const ref = React.useRef(null);
-  return ref;
-};
-
-const motion = {
-  div: ({ children, ...props }) => <div {...props}>{children}</div>,
-};
-
-
-// --- About Page Component ---
 const About = () => {
-  const ref = useScrollAnimation();
-
   const features = [
     {
       icon: Building2,
@@ -55,80 +28,114 @@ const About = () => {
 
   return (
     <>
-      {/* Header Section with White Background */}
-      <section className="py-20 bg-white">
+      {/* WHO WE ARE Section */}
+      <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              ref={ref}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                About Highdorn Group
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                A leading property management group with a commitment to excellence and innovation
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-8 tracking-tight">
+              WHO WE ARE
+            </h2>
+            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+              <p>
+                Highdorn Group is a property management group that manages both commercial and 
+                residential properties in the UK. Highdorn is owned and controlled by the Freshwater family.
               </p>
-            </motion.div>
+              <p>
+                Our portfolio of high quality commercial property is focused on office-led campuses 
+                in Central London, retail across the UK and London urban logistics.
+              </p>
+            </div>
+            <div className="mt-8">
+              <button className="inline-flex items-center gap-2 bg-teal-600 text-white px-6 py-3 font-semibold hover:bg-teal-700 transition-colors duration-200">
+                About Us
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Main Content Section with Dark Background */}
-      <section className="py-20 bg-[#101826]">
+      {/* OUR PURPOSE Section */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-6"
+              className="relative"
             >
-              <h3 className="text-2xl font-bold text-white">
-                Our Heritage
-              </h3>
-              <div className="prose prose-invert max-w-none">
-                <p className="text-gray-300 leading-relaxed">
-                  Highdorn Group is a property management group that manages both commercial and 
-                  residential properties in the UK. Highdorn is owned and controlled by the Freshwater family.
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  Almost all the properties Highdorn manages are owned by two property investment groups - 
-                  <a href="#" className="text-blue-400 hover:text-blue-500 mx-1">Daejan Holdings</a> 
-                  and 
-                  <a href="#" className="text-blue-400 hover:text-blue-500 mx-1">Centremanor Group</a>
-                  that are also owned and controlled by the Freshwater family.
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  Colloquially these groups together are known as the 
-                  <a href="#" className="text-blue-400 hover:text-blue-500 mx-1">Freshwater Group</a>
-                  although this is not a legal entity.
-                </p>
-              </div>
+              <div className="absolute -top-8 -left-8 w-32 h-32 bg-yellow-300 rounded-full opacity-20"></div>
+              <img
+                src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Modern office building"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+              <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-teal-400 rounded-full opacity-30"></div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-6"
+              className="space-y-8"
             >
-              <h3 className="text-2xl font-bold text-white">
-                Our Services
-              </h3>
-              <div className="prose prose-invert max-w-none">
-                <p className="text-gray-300 leading-relaxed">
-                  Highdorn employs most of the people in the Freshwater Group and supplies their services to 
-                  other groups and companies within the Freshwater Group.
+              <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tight">
+                OUR
+                <br />
+                PURPOSE
+              </h2>
+              <div className="space-y-6">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Almost all the properties Highdorn manages are owned by two property investment groups - 
+                  Daejan Holdings and Centremanor Group that are also owned and controlled by the Freshwater family.
                 </p>
-                <p className="text-gray-300 leading-relaxed">
-                  Details relevant to employment matters are therefore included in this website, 
-                  for example details of the Defined Benefit Pension Scheme.
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Colloquially these groups together are known as the Freshwater Group 
+                  although this is not a legal entity.
                 </p>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-teal-600">
+                  <ArrowRight className="w-5 h-5" />
+                  <span className="font-semibold">Commercial Properties</span>
+                </div>
+                <div className="flex items-center gap-3 text-teal-600">
+                  <ArrowRight className="w-5 h-5" />
+                  <span className="font-semibold">Residential Management</span>
+                </div>
+                <div className="flex items-center gap-3 text-teal-600">
+                  <ArrowRight className="w-5 h-5" />
+                  <span className="font-semibold">Investment Services</span>
+                </div>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* SERVICES Section */}
+      <section className="py-24 bg-teal-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl md:text-6xl font-black text-white mb-8 tracking-tight">
+              OUR SERVICES
+            </h2>
+            <p className="text-xl text-teal-100 max-w-3xl mx-auto leading-relaxed">
+              Highdorn employs most of the people in the Freshwater Group and supplies their services to 
+              other groups and companies within the Freshwater Group.
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
@@ -137,30 +144,55 @@ const About = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-8 hover:shadow-xl transition-shadow duration-300 group"
               >
-                <div className="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-blue-400" />
+                <div className="w-16 h-16 bg-teal-100 flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                  <feature.icon className="w-8 h-8 text-teal-700" />
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">
                   {feature.title}
                 </h4>
-                <p className="text-gray-300">
+                <p className="text-gray-600 leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-16"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Financial Reports</h3>
+                <div className="flex items-center justify-center gap-2 text-teal-200 hover:text-white cursor-pointer transition-colors">
+                  <span>Annual Reports and Accounts</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Investment Information</h3>
+                <div className="flex items-center justify-center gap-2 text-teal-200 hover:text-white cursor-pointer transition-colors">
+                  <span>Pension Schemes</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Corporate Information</h3>
+                <div className="flex items-center justify-center gap-2 text-teal-200 hover:text-white cursor-pointer transition-colors">
+                  <span>Management Team</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </>
   );
 };
 
-
-// --- Main App Component ---
-const App = () => {
-    return <About />;
-}
-
-export default App;
+export default About;
