@@ -27,8 +27,8 @@ const Navbar = () => {
       icon: Building2, 
       color: 'blue',
       dropdown: [
-        { name: 'Office', href: '/office', description: 'Commercial office spaces and business properties', image: '/office.jpg' },
-        { name: 'Residential', href: '/residential', description: 'Luxury homes and residential developments', image: '/residential.jpg' }
+        { name: 'Office', href: '/office', description: 'Commercial office spaces and business properties', image: '/Dean-02.jpg' },
+        { name: 'Residential', href: '/residential', description: 'Luxury homes and residential developments', image: '/Cloisters-01.jpg' }
       ]
     },
     { 
@@ -37,9 +37,9 @@ const Navbar = () => {
       icon: Users2, 
       color: 'green',
       dropdown: [
-        { name: 'Directors', href: '/directors', description: 'Board of directors and leadership team', image: '/executive.jpg' },
-        { name: 'Executive Team', href: '/executive', description: 'Senior management and executives', image: '/executive.jpg' },
-        { name: 'Management Team', href: '/management', description: 'Department heads and managers', image: '/management.jpg' }
+        { name: 'Directors', href: '/directors', description: 'Board of directors and leadership team', image: 'https://images.pexels.com/photos/1181534/pexels-photo-1181534.jpeg?auto=compress&cs=tinysrgb&w=400' },
+        { name: 'Executive Team', href: '/executive', description: 'Senior management and executives', image: 'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=400' },
+        { name: 'Management Team', href: '/management', description: 'Department heads and managers', image: 'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=400' }
       ]
     },
     { 
@@ -48,9 +48,9 @@ const Navbar = () => {
       icon: TrendingUp, 
       color: 'purple',
       dropdown: [
-        { name: 'Financial Results 2024', href: '/financials-2024', description: 'Latest financial performance and annual report', image: '/2024.png' },
-        { name: 'Financial Results 2023', href: '/financials-2023', description: 'Previous year financial performance', image: '/2023.png' },
-        { name: 'Financial Results 2022', href: '/financials-2022', description: 'Historical financial data and analysis', image: '/2022.png' }
+        { name: 'Financial Results 2024', href: '/financials-2024', description: 'Latest financial performance and annual report', image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=400' },
+        { name: 'Financial Results 2023', href: '/financials-2023', description: 'Previous year financial performance', image: 'https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=400' },
+        { name: 'Financial Results 2022', href: '/financials-2022', description: 'Historical financial data and analysis', image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=400' }
       ]
     },
     { name: 'Pensions', href: '/pensions', icon: ScrollText },
@@ -212,7 +212,7 @@ const Navbar = () => {
                                     className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-300"
                                     onError={(e) => {
                                       const img = e.target as HTMLImageElement;
-                                      img.style.display = 'none';
+                                      img.src = 'https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=400';
                                     }}
                                   />
                                 </div>
@@ -308,7 +308,7 @@ const Navbar = () => {
                             className="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-110"
                             onError={(e) => {
                               const img = e.target as HTMLImageElement;
-                              img.style.display = 'none';
+                              img.src = 'https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=400';
                             }}
                           />
                         </div>
